@@ -1,18 +1,22 @@
+import 'package:demo_app/features/grocery/controller/grocery_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/components/sized_box_helper.dart';
 import '../../../../core/themes/screen_utility.dart';
 import '../../../../core/themes/themes.dart';
 
-
 class OfferCard extends StatelessWidget {
-  const OfferCard({
+  OfferCard({
     Key? key,
   }) : super(key: key);
 
+  final GroceryController groceryController = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    var banner = groceryController.banner;
     return Container(
       width: double.infinity,
       height: 120.r,
@@ -30,13 +34,13 @@ class OfferCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Mega',
+              banner?.name ?? '',
               style: MainTheme.normalStyle.copyWith(
                 color: Theme.of(context).primaryColor,
               ),
             ),
             Text(
-              'whopper'.toUpperCase(),
+              banner?.ownerName?.toUpperCase() ?? '',
               // textScaleFactor: 2,
               style: MainTheme.boldStyle
                   .copyWith(letterSpacing: 2, fontSize: 34.r),
@@ -44,7 +48,7 @@ class OfferCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '\$ 12',
+                  '\$ ${banner?.newPrice}',
                   style: MainTheme.headerStyle3.copyWith(
                     color: MainStyle.primaryColor,
                   ),
@@ -53,7 +57,7 @@ class OfferCard extends StatelessWidget {
                   width: 15,
                 ),
                 Text(
-                  '\$ 12',
+                  '\$ ${banner?.oldPrice}',
                   style: MainTheme.headerStyle3.copyWith(
                     decoration: TextDecoration.lineThrough,
                     color: Colors.white,
@@ -64,7 +68,7 @@ class OfferCard extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '* Available until 24 December 2020',
+              '* Available until ${banner?.expireDate ?? ''}',
               style: MainTheme.normalStyle.copyWith(
                 color: Colors.white,
               ),

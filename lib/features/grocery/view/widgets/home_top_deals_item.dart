@@ -5,11 +5,25 @@ import '../../../../core/components/sized_box_helper.dart';
 import '../../../../core/themes/screen_utility.dart';
 import '../../../../core/themes/themes.dart';
 
-
 class HomeTopDealsItem extends StatelessWidget {
   const HomeTopDealsItem({
     Key? key,
+    required this.isFav,
+    required this.name,
+    required this.color,
+    required this.distance,
+    required this.oldPrice,
+    required this.newPrice,
+    required this.quantityType, required this.onFavStateChanged,
   }) : super(key: key);
+  final bool? isFav;
+  final String? name;
+  final String? color;
+  final String? distance;
+  final String? oldPrice;
+  final String? newPrice;
+  final String? quantityType;
+  final void Function() onFavStateChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +47,19 @@ class HomeTopDealsItem extends StatelessWidget {
               Positioned(
                 top: -3.r,
                 left: -2.r,
-                child: Container(
-                  padding: EdgeInsets.all(5.r),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.favorite,
-                    size: 20.r,
+                child: InkWell(
+                  onTap: onFavStateChanged,
+                  child: Container(
+                    padding: EdgeInsets.all(5.r),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      isFav == true ? Icons.favorite : Icons.favorite_border,
+                      color: isFav == true ? Colors.red : null,
+                      size: 20.r,
+                    ),
                   ),
                 ),
               ),
@@ -54,14 +72,14 @@ class HomeTopDealsItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Summer Sun Ice Cream Pack',
+                name ?? '',
                 style: MainTheme.boldStyle,
               ),
               const BoxHelper(
                 height: 5,
               ),
               Text(
-                'Pieces 5',
+                quantityType ?? '',
                 style: MainTheme.normalStyle.copyWith(
                   fontSize: 11.r,
                 ),
@@ -79,7 +97,7 @@ class HomeTopDealsItem extends StatelessWidget {
                     width: 3,
                   ),
                   Text(
-                    '15 Minutes away',
+                    distance ?? '',
                     style: MainTheme.normalStyle.copyWith(
                       fontSize: 11.r,
                     ),
@@ -92,7 +110,7 @@ class HomeTopDealsItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '\$ 12',
+                    '\$ $newPrice',
                     style: MainTheme.boldStyle.copyWith(
                       color: MainStyle.primaryColor,
                     ),
@@ -101,7 +119,7 @@ class HomeTopDealsItem extends StatelessWidget {
                     width: 15,
                   ),
                   Text(
-                    '\$ 17',
+                    '\$ $oldPrice',
                     style: MainTheme.normalStyle.copyWith(
                       decoration: TextDecoration.lineThrough,
                       color: MainStyle.darkGreyColor,

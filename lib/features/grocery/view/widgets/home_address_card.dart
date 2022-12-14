@@ -56,11 +56,17 @@ class HomeAddressCard extends StatelessWidget {
               const BoxHelper(
                 height: 3,
               ),
-              Text(
-                addressData ?? '',
-                style: TextStyle(
-                  fontSize: 11.r,
-                  // fontWeight: FontWeight.bold,
+              BoxHelper(
+                width: 60,
+                child: Text(
+                  addressData ?? '',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 11.r,
+                    
+                    // fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

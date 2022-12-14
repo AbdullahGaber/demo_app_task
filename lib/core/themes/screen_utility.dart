@@ -30,4 +30,5 @@ class MainStyle {
   static const addressCardColor2 = Color(0xffE3DDD6);
   static const lightBlueColor = Color(0xffB0EAFD);
   static const darkBlueColor = Color(0xff48B6DA);
+  static const bnbColor = Color(0xffD6DADA);
 }

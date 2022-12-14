@@ -1,8 +1,10 @@
 import 'package:demo_app/core/themes/screen_utility.dart';
 import 'package:demo_app/features/cart/cart_screen.dart';
-import 'package:demo_app/features/home/view/home_screen.dart';
+import 'package:demo_app/features/grocery/view/home_screen.dart';
+import 'package:demo_app/features/tabs/view/tab_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,9 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder: (context, widget) => MaterialApp(
+      builder: (context, widget) => GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
           scaffoldBackgroundColor: Colors.white,
           // This is the theme of your application.
           //
@@ -27,7 +31,7 @@ class MyApp extends StatelessWidget {
           primaryColor: MainStyle.primaryColor,
         ),
         debugShowCheckedModeBanner: false,
-        home: const CartScreen(),
+        home: const TabsScreem(),
       ),
     );
   }
