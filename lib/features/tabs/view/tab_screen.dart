@@ -27,73 +27,76 @@ class _TabsScreemState extends State<TabsScreem> {
     return GetBuilder(
         init: TabsController(),
         builder: (controller) {
-          return Scaffold(
-            floatingActionButton:
-                GetBuilder<CartController>(builder: (controller) {
-              return FloatingActionButton(
-                onPressed: null,
-                backgroundColor: Theme.of(context).primaryColor,
-                child: Padding(
-                  padding: EdgeInsets.all(8.r),
-                  child: Stack(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/icons/svg/cart_amount.svg',
-                        height: 40.r,
-                        width: 40.r,
-                      ),
-                      Positioned(
-                          top: 7.r,
-                          child: Text(
-                            '\$ ${controller.cartAmount.toStringAsFixed(0)}',
-                            style: MainTheme.normalStyle.copyWith(
-                              color: Colors.white,
-                              fontSize: 10.r,
-                            ),
-                          ))
-                    ],
-                  ),
-                ),
-              );
-            }),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            body: controller.tabs[controller.tabIndex].page,
-            bottomNavigationBar: BoxHelper(
-              height: 60,
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                onTap: controller.onTabChanged,
-                selectedItemColor: Theme.of(context).primaryColor,
-                // selectedIconTheme: IconThemeData(color: Colors.red),
-                selectedFontSize: 11.r,
-                unselectedFontSize: 11.r,
-
-                unselectedItemColor: MainStyle.bnbColor,
-                currentIndex: controller.tabIndex,
-                items: List.generate(
-                  controller.tabs.length,
-                  (index) {
-                    var e = controller.tabs[index];
-                    return BottomNavigationBarItem(
-                      icon: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 5.r),
-                        child: e.iconPath.isEmpty
-                            ? const BoxHelper()
-                            : SvgPicture.asset(
-                                e.iconPath,
-                                color: index == controller.tabIndex
-                                    ? Theme.of(context).primaryColor
-                                    : null,
-                                height: 25.r,
-                                width: 25.r,
+          return SafeArea(
+            top: false,
+            child: Scaffold(
+              floatingActionButton:
+                  GetBuilder<CartController>(builder: (controller) {
+                return FloatingActionButton(
+                  onPressed: null,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.r),
+                    child: Stack(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/icons/svg/cart_amount.svg',
+                          height: 35.r,
+                          width: 35.r,
+                        ),
+                        Positioned(
+                            top: 7.r,
+                            child: Text(
+                              '\$ ${controller.cartAmount.toStringAsFixed(0)}',
+                              style: MainTheme.normalStyle.copyWith(
+                                color: Colors.white,
+                                fontSize: 10.r,
                               ),
-                      ),
-                      label: e.title,
-                      tooltip: e.title,
-                    );
-                  },
-                ).toList(),
+                            ))
+                      ],
+                    ),
+                  ),
+                );
+              }),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              body: controller.tabs[controller.tabIndex].page,
+              bottomNavigationBar: BoxHelper(
+                height: 65,
+                child: BottomNavigationBar(
+                  type: BottomNavigationBarType.fixed,
+                  onTap: controller.onTabChanged,
+                  selectedItemColor: Theme.of(context).primaryColor,
+                  // selectedIconTheme: IconThemeData(color: Colors.red),
+                  selectedFontSize: 11.r,
+                  unselectedFontSize: 11.r,
+
+                  unselectedItemColor: MainStyle.bnbColor,
+                  currentIndex: controller.tabIndex,
+                  items: List.generate(
+                    controller.tabs.length,
+                    (index) {
+                      var e = controller.tabs[index];
+                      return BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 5.r),
+                          child: e.iconPath.isEmpty
+                              ? const BoxHelper()
+                              : SvgPicture.asset(
+                                  e.iconPath,
+                                  color: index == controller.tabIndex
+                                      ? Theme.of(context).primaryColor
+                                      : null,
+                                  height: 20.r,
+                                  width: 20.r,
+                                ),
+                        ),
+                        label: e.title,
+                        tooltip: e.title,
+                      );
+                    },
+                  ).toList(),
+                ),
               ),
             ),
           );
