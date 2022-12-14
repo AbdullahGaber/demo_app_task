@@ -48,6 +48,7 @@ class _TabsScreemState extends State<TabsScreem> {
                             '\$ ${controller.cartAmount.toStringAsFixed(0)}',
                             style: MainTheme.normalStyle.copyWith(
                               color: Colors.white,
+                              fontSize: 10.r,
                             ),
                           ))
                     ],
